@@ -41,3 +41,5 @@ RUN touch install.log && \
     sleep 5 && while true; do grep -q "No checkpoints found." install.log && exit 0; grep -q "ERROR" install.log && exit 1; sleep 3; done
 
 RUN chmod +x /app/stable-diffusion-webui/webui.sh
+
+RUN git config --global --add safe.directory /app/stable-diffusion-webui/repositories/*
