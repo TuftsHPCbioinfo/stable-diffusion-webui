@@ -2,7 +2,7 @@ ARG CUDA_VERSION=12.1.1
 ARG UBUNTU_VERSION=22.04
 ARG GPU_BASE=nvidia/cuda:$CUDA_VERSION-devel-ubuntu$UBUNTU_VERSION
 FROM --platform=$TARGETPLATFORM $GPU_BASE
-LABEL maintainer="Martin Chan @osiutino"
+LABEL maintainer="Yucheng Zhang: Yucheng.Zhang@tufts.edu"
 
 ARG BRANCH_OR_TAG=master
 ARG BUILD_DATE
@@ -40,4 +40,4 @@ RUN touch install.log && \
     timeout 2h bash -c "export python_cmd='python3.11' && export TORCH_COMMAND=\"pip install torch==2.1.2 torchvision==0.16.2\" && ./webui.sh --skip-torch-cuda-test --no-download-sd-model 2>&1 | tee install.log &" && \
     sleep 5 && while true; do grep -q "No checkpoints found." install.log && exit 0; grep -q "ERROR" install.log && exit 1; sleep 3; done
 
-RUN chomd +x /app/stable-diffusion-webui/webui.sh
+RUN chmod +x /app/stable-diffusion-webui/webui.sh
