@@ -23,7 +23,7 @@ jobs:
         with:
           images: |
             tuftsttsrt/stable-diffusion-webui
-          tags: type=semver,pattern={{version}}
+          tags: 1.10.1-controlnet
       - name: Build & Publish Docker Image
         uses: docker/build-push-action@v5
         with:
